@@ -1,0 +1,159 @@
+@layout.app({title: 'Products - ZAXCKS Streetwear'})
+
+  @slot('meta')
+    @vite(['resources/css/product.css'])
+  @endslot
+  
+  @slot('hero')
+    <section class="product-hero">
+      <div class="product-hero-content">
+        <h1>
+          Our Collection
+        </h1>
+        <p>
+          Explore our curated selection of minimalist streetwear.
+        </p>
+      </div>
+    </section>
+  @endslot
+  
+  @slot('main')
+    <main class="product-page">
+
+      <section class="page-title">
+        <h2>
+          All Products
+        </h2>
+      </section>
+
+      <section class="product-grid-container">
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="/images/product/slide1.webp" alt="Monochrome Hoodie" class="product-image" />
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">
+                Monochrome Hoodie
+              </h3>
+              <p class="product-price">
+                Rp 499.000
+              </p>
+              <div class="product-action">
+                <a href="#" class="product-cta">View Details</a>
+                <button class="product-cart-btn" aria-label="Add to cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="/images/product/slide2.png" alt="Classic Black Tee" class="product-image" />
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">
+                Classic Black Tee
+              </h3>
+              <p class="product-price">
+                Rp 249.000
+              </p>
+              <div class="product-action">
+                <a href="#" class="product-cta">View Details</a>
+                <button class="product-cart-btn" aria-label="Add to cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="/images/product/slide3.png" alt="Cargo Pants" class="product-image" />
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">
+                Urban Cargo Pants
+              </h3>
+              <p class="product-price">
+                Rp 549.000
+              </p>
+              <div class="product-action">
+                <a href="#" class="product-cta">View Details</a>
+                <button class="product-cart-btn" aria-label="Add to cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="/images/product/product4.png" alt="Beanie Hat" class="product-image" />
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">
+                Essential Beanie
+              </h3>
+              <p class="product-price">
+                Rp 199.000
+              </p>
+              <div class="product-action">
+                <a href="#" class="product-cta">View Details</a>
+                <button class="product-cart-btn" aria-label="Add to cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="/images/product/product5.png" alt="Graphic Tee" class="product-image" />
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">
+                ZAXCKS Graphic Tee
+              </h3>
+              <p class="product-price">
+                Rp 279.000
+              </p>
+              <div class="product-action">
+                <a href="#" class="product-cta">View Details</a>
+                <button class="product-cart-btn" aria-label="Add to cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image-container">
+              <img src="/images/product/product6.png" alt="Snapback Cap" class="product-image" />
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">
+                Monogram Snapback
+              </h3>
+              <p class="product-price">
+                Rp 229.000
+              </p>
+              <div class="product-action">
+                <a href="#" class="product-cta">View Details</a>
+                <button class="product-cart-btn" aria-label="Add to cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="checkout-button-container">
+          <a href="/checkout" class="main-checkout-button">Proceed to Checkout</a>
+        </div>
+      </section>
+    </main>
+  @endslot
+  
+@end

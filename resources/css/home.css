@@ -2,7 +2,7 @@
 
 /* Hero Section */
 .hero {
-  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)), url('../images/home/bg.jpg');
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)), url('/images/home/bg.jpg');
   background-size: cover;
   background-position: center;
   color: #fff;
