@@ -14,7 +14,8 @@
 
     @vite(['resources/css/main.css'])
     @vite(['resources/js/app.js'])
-
+    @vite('resources/js/main.js')
+ 
     @if ($slots.meta)
       {{{ await $slots.meta() }}}
     @endif
@@ -24,7 +25,10 @@
     @if ($slots.hero)
       {{{ await $slots.hero() }}}
     @endif
-    {{{ await $slots.main() }}}
+    {{{ await $slots.main() }}} 
+    @if ($slots.script)
+      {{{ await $slots.script() }}}
+    @endif
     @include('partials/footer')
   </body>
 </html>

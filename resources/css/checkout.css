@@ -154,6 +154,23 @@
     font-weight: 500;
 }
 
+.item-price-group {
+    text-align: right;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: #d90429;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 5px;
+    padding: 0;
+}
+.remove-item:hover {
+    text-decoration: underline;
+}
+
 .order-total {
     margin-top: 20px;
     padding-top: 20px;
