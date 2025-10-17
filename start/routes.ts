@@ -25,11 +25,10 @@ router.get('/checkout', [CheckoutsController, 'show'])
 
 // seller
 const SellerDashboardController = () => import('#controllers/seller_dashboard_controller')
-
 router
   .group(() => {
     router.get('/dashboard', [SellerDashboardController, 'dashboard'])
-    router.get('/addProduct', [SellerDashboardController, 'showAddProduct'])
+    router.get('/addProduct', [SellerDashboardController, 'createProduct'])
     // router.get('/viewWishlist', [SellerDashboardController, 'showAllWishlist'])
   })
   .prefix('/seller')

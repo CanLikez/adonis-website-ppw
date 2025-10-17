@@ -5,11 +5,11 @@ export default class SellerDashboardController {
     return view.render('pages/seller/dashboard')
   }
 
-  public async showAddProduct({ view }: HttpContext) {
+  public async createProduct({ view }: HttpContext) {
     return view.render('pages/seller/addProduct')
   }
 
-  public async showAllWishlist({ view }: HttpContext) {
+  public async viewWishlistAnalytics({ view }: HttpContext) {
     return view.render('pages/seller/wishlistView')
   }
 }
