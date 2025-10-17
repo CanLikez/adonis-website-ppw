@@ -1,25 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
-const initializeProducts = () => {
+  const initializeProducts = () => {
     if (!localStorage.getItem('products')) {
       const initialProducts = [
-        { id: '1', name: 'Monochrome Hoodie', price: 499000, imageSrc: '/images/product/slide1.webp' },
-        { id: '2', name: 'Classic Black Tee', price: 249000, imageSrc: '/images/product/slide2.png' },
-        { id: '3', name: 'Urban Cargo Pants', price: 549000, imageSrc: '/images/product/slide3.png' },
-        { id: '4', name: 'Essential Beanie', price: 199000, imageSrc: '/images/product/product4.png' },
-        { id: '5', name: 'ZAXCKS Graphic Tee', price: 279000, imageSrc: '/images/product/product5.png' },
-        { id: '6', name: 'Monogram Snapback', price: 229000, imageSrc: '/images/product/product6.png' },
-        { id: '7', name: 'Minimalist Windbreaker', price: 699000, imageSrc: '/images/product/product7.png' },
-        { id: '8', name: 'Signature Tote Bag', price: 349000, imageSrc: '/images/product/product8.png' }
-      ];
-      localStorage.setItem('products', JSON.stringify(initialProducts));
-      console.log('Initial products seeded to localStorage.');
+        {
+          id: '1',
+          name: 'Monochrome Hoodie',
+          price: 499000,
+          imageSrc: '/images/product/slide1.webp',
+        },
+        {
+          id: '2',
+          name: 'Classic Black Tee',
+          price: 249000,
+          imageSrc: '/images/product/slide2.png',
+        },
+        {
+          id: '3',
+          name: 'Urban Cargo Pants',
+          price: 549000,
+          imageSrc: '/images/product/slide3.png',
+        },
+        {
+          id: '4',
+          name: 'Essential Beanie',
+          price: 199000,
+          imageSrc: '/images/product/product4.png',
+        },
+        {
+          id: '5',
+          name: 'ZAXCKS Graphic Tee',
+          price: 279000,
+          imageSrc: '/images/product/product5.png',
+        },
+        {
+          id: '6',
+          name: 'Monogram Snapback',
+          price: 229000,
+          imageSrc: '/images/product/product6.png',
+        },
+        {
+          id: '7',
+          name: 'Minimalist Windbreaker',
+          price: 699000,
+          imageSrc: '/images/product/product7.png',
+        },
+        {
+          id: '8',
+          name: 'Signature Tote Bag',
+          price: 349000,
+          imageSrc: '/images/product/product8.png',
+        },
+      ]
+      localStorage.setItem('products', JSON.stringify(initialProducts))
+      console.log('Initial products seeded to localStorage.')
     }
-  };
-  
-  initializeProducts();
+  }
 
-  const getProducts = () => JSON.parse(localStorage.getItem('products')) || [];
+  initializeProducts()
 
+  const getProducts = () => JSON.parse(localStorage.getItem('products')) || []
 
   const getWishlist = () => {
     const wishlistJSON = localStorage.getItem('wishlist')
@@ -30,34 +69,26 @@ const initializeProducts = () => {
     localStorage.setItem('wishlist', JSON.stringify(wishlist))
   }
 
-  const wishlistButtons = document.querySelectorAll('.wishlist-btn')
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('.wishlist-btn')
+    if (!button) return
 
-  wishlistButtons.forEach((button) => {
     const productId = button.dataset.productId
-    let currentWishlist = getWishlist()
+    const heartIcon = button.querySelector('i')
+    let wishlist = getWishlist()
 
-    if (currentWishlist.includes(productId)) {
+    if (wishlist.includes(productId)) {
+      wishlist = wishlist.filter((id) => id !== productId)
+      button.classList.remove('active')
+      heartIcon.classList.replace('fas', 'far')
+    } else {
+      wishlist.push(productId)
       button.classList.add('active')
-      button.querySelector('i').classList.replace('far', 'fas')
+      heartIcon.classList.replace('far', 'fas')
     }
 
-    button.addEventListener('click', () => {
-      const heartIcon = button.querySelector('i')
-      let wishlist = getWishlist()
-
-      if (wishlist.includes(productId)) {
-        wishlist = wishlist.filter((id) => id !== productId)
-        button.classList.remove('active')
-        heartIcon.classList.replace('fas', 'far')
-      } else {
-        wishlist.push(productId)
-        button.classList.add('active')
-        heartIcon.classList.replace('far', 'fas')
-      }
-
-      saveWishlist(wishlist)
-      console.log('Wishlist diperbarui:', getWishlist())
-    })
+    saveWishlist(wishlist)
+    console.log('Wishlist diperbarui:', getWishlist())
   })
 
   // build wishlist
@@ -169,64 +200,63 @@ const initializeProducts = () => {
     }
   }
   // transaction page
-const getCart = () => {
-    const cartJSON = localStorage.getItem('cart');
-    return cartJSON ? JSON.parse(cartJSON) : [];
-};
+  const getCart = () => {
+    const cartJSON = localStorage.getItem('cart')
+    return cartJSON ? JSON.parse(cartJSON) : []
+  }
 
-const saveCart = (cart) => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-};
+  const saveCart = (cart) => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }
 
-const cartButtons = document.querySelectorAll('.product-cart-btn');
+  const cartButtons = document.querySelectorAll('.product-cart-btn')
 
-cartButtons.forEach(button => {
+  cartButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        const productId = button.dataset.productId;
-        if (!productId) return;
+      const productId = button.dataset.productId
+      if (!productId) return
 
-        let cart = getCart();
-        
-        const existingProductIndex = cart.findIndex(item => item.id === productId);
+      let cart = getCart()
 
-        if (existingProductIndex > -1) {
-            cart[existingProductIndex].qty++;
-        } else {
-            cart.push({ id: productId, qty: 1 });
-        }
+      const existingProductIndex = cart.findIndex((item) => item.id === productId)
 
-        saveCart(cart);
-        
-        console.log('Keranjang diperbarui:', getCart());
-        button.innerHTML = '<i class="fas fa-check"></i>';
-        setTimeout(() => {
-            button.innerHTML = '<i class="fas fa-shopping-cart"></i>';
-        }, 1500);
-    });
-});
-// checkout logic
+      if (existingProductIndex > -1) {
+        cart[existingProductIndex].qty++
+      } else {
+        cart.push({ id: productId, qty: 1 })
+      }
 
-const cartItemsContainer = document.getElementById('cart-items-container');
-if (cartItemsContainer) {
+      saveCart(cart)
 
+      console.log('Keranjang diperbarui:', getCart())
+      button.innerHTML = '<i class="fas fa-check"></i>'
+      setTimeout(() => {
+        button.innerHTML = '<i class="fas fa-shopping-cart"></i>'
+      }, 1500)
+    })
+  })
+  // checkout logic
+
+  const cartItemsContainer = document.getElementById('cart-items-container')
+  if (cartItemsContainer) {
     const renderCheckout = () => {
-        const cart = getCart();
-        const orderTotalContainer = document.getElementById('order-total-container');
+      const cart = getCart()
+      const orderTotalContainer = document.getElementById('order-total-container')
 
-        cartItemsContainer.innerHTML = '';
-        orderTotalContainer.innerHTML = '';
+      cartItemsContainer.innerHTML = ''
+      orderTotalContainer.innerHTML = ''
 
-        if (cart.length > 0) {
-            let subtotal = 0;
+      if (cart.length > 0) {
+        let subtotal = 0
 
-            cart.forEach(cartItem => {
-                const productDetail = allProducts.find(p => p.id === cartItem.id);
-                if (!productDetail) return;
+        cart.forEach((cartItem) => {
+          const productDetail = allProducts.find((p) => p.id === cartItem.id)
+          if (!productDetail) return
 
-                const itemTotal = productDetail.price * cartItem.qty;
-                subtotal += itemTotal;
+          const itemTotal = productDetail.price * cartItem.qty
+          subtotal += itemTotal
 
-                const itemHTML = `
+          const itemHTML = `
                     <div class="order-item" data-id="${productDetail.id}">
                         <img src="${productDetail.imageSrc}" alt="${productDetail.imageAlt}">
                         <div class="item-details">
@@ -242,14 +272,14 @@ if (cartItemsContainer) {
                             <button class="remove-item" data-id="${productDetail.id}">Remove</button>
                         </div>
                     </div>
-                `;
-                cartItemsContainer.insertAdjacentHTML('beforeend', itemHTML);
-            });
+                `
+          cartItemsContainer.insertAdjacentHTML('beforeend', itemHTML)
+        })
 
-            const shipping = 20000;
-            const total = subtotal + shipping;
+        const shipping = 20000
+        const total = subtotal + shipping
 
-            const totalHTML = `
+        const totalHTML = `
                 <div class="total-row">
                     <span>Subtotal</span>
                     <span>Rp ${subtotal.toLocaleString('id-ID')}</span>
@@ -262,48 +292,49 @@ if (cartItemsContainer) {
                     <span>Total</span>
                     <span>Rp ${total.toLocaleString('id-ID')}</span>
                 </div>
-            `;
-            orderTotalContainer.innerHTML = totalHTML;
-        } else {
-            cartItemsContainer.innerHTML = '<p style="text-align:center; color: #777;">Your cart is empty.</p>';
-        }
-    };
+            `
+        orderTotalContainer.innerHTML = totalHTML
+      } else {
+        cartItemsContainer.innerHTML =
+          '<p style="text-align:center; color: #777;">Your cart is empty.</p>'
+      }
+    }
 
     // change quantity
     const updateQuantity = (productId, change) => {
-        let cart = getCart();
-        const productIndex = cart.findIndex(item => item.id === productId);
-        if (productIndex > -1) {
-            cart[productIndex].qty += change;
-            if (cart[productIndex].qty <= 0) {
-                cart.splice(productIndex, 1);
-            }
-            saveCart(cart);
-            renderCheckout();
+      let cart = getCart()
+      const productIndex = cart.findIndex((item) => item.id === productId)
+      if (productIndex > -1) {
+        cart[productIndex].qty += change
+        if (cart[productIndex].qty <= 0) {
+          cart.splice(productIndex, 1)
         }
-    };
+        saveCart(cart)
+        renderCheckout()
+      }
+    }
 
     const removeItem = (productId) => {
-        let cart = getCart();
-        const updatedCart = cart.filter(item => item.id !== productId);
-        saveCart(updatedCart);
-        renderCheckout();
-    };
+      let cart = getCart()
+      const updatedCart = cart.filter((item) => item.id !== productId)
+      saveCart(updatedCart)
+      renderCheckout()
+    }
     cartItemsContainer.addEventListener('click', (event) => {
-        const target = event.target;
-        const productId = target.dataset.id;
-        
-        if (!productId) return;
+      const target = event.target
+      const productId = target.dataset.id
 
-        if (target.classList.contains('plus')) {
-            updateQuantity(productId, 1);
-        } else if (target.classList.contains('minus')) {
-            updateQuantity(productId, -1);
-        } else if (target.classList.contains('remove-item')) {
-            removeItem(productId);
-        }
-    });
+      if (!productId) return
 
-    renderCheckout();
-}
+      if (target.classList.contains('plus')) {
+        updateQuantity(productId, 1)
+      } else if (target.classList.contains('minus')) {
+        updateQuantity(productId, -1)
+      } else if (target.classList.contains('remove-item')) {
+        removeItem(productId)
+      }
+    })
+
+    renderCheckout()
+  }
 })
