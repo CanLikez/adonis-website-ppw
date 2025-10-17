@@ -36,25 +36,8 @@ main {
 }
 
 .seller-main p {
-  color: #777;
+  color: #000000;
   margin-bottom: 30px;
-}
-
-/* button */
-.seller-cta {
-  display: inline-block;
-  background-color: #222;
-  color: #fff;
-  padding: 12px 25px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  margin-bottom: 30px;
-}
-
-.seller-cta:hover {
-  background-color: #555;
 }
 
 /* product list */
