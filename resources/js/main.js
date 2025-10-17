@@ -1,4 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
+const initializeProducts = () => {
+    if (!localStorage.getItem('products')) {
+      const initialProducts = [
+        { id: '1', name: 'Monochrome Hoodie', price: 499000, imageSrc: '/images/product/slide1.webp' },
+        { id: '2', name: 'Classic Black Tee', price: 249000, imageSrc: '/images/product/slide2.png' },
+        { id: '3', name: 'Urban Cargo Pants', price: 549000, imageSrc: '/images/product/slide3.png' },
+        { id: '4', name: 'Essential Beanie', price: 199000, imageSrc: '/images/product/product4.png' },
+        { id: '5', name: 'ZAXCKS Graphic Tee', price: 279000, imageSrc: '/images/product/product5.png' },
+        { id: '6', name: 'Monogram Snapback', price: 229000, imageSrc: '/images/product/product6.png' },
+        { id: '7', name: 'Minimalist Windbreaker', price: 699000, imageSrc: '/images/product/product7.png' },
+        { id: '8', name: 'Signature Tote Bag', price: 349000, imageSrc: '/images/product/product8.png' }
+      ];
+      localStorage.setItem('products', JSON.stringify(initialProducts));
+      console.log('Initial products seeded to localStorage.');
+    }
+  };
+  
+  initializeProducts();
+
+  const getProducts = () => JSON.parse(localStorage.getItem('products')) || [];
+
+
   const getWishlist = () => {
     const wishlistJSON = localStorage.getItem('wishlist')
     return wishlistJSON ? JSON.parse(wishlistJSON) : []

@@ -104,3 +104,17 @@ main {
 .seller-form button:hover {
   background-color: #555;
 }
+
+/* wishlist */
+#wishlist-analytics-list { 
+  list-style: none; 
+  padding: 0; 
+}
+
+#wishlist-analytics-list li { 
+  background-color: #f8fafc; 
+  padding: 15px; 
+  border-radius: 5px; 
+  margin-bottom: 10px; 
+  border-left: 4px solid #1e293b; 
+}

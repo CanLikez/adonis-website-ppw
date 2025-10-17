@@ -29,6 +29,6 @@ router
   .group(() => {
     router.get('/dashboard', [SellerDashboardController, 'dashboard'])
     router.get('/addProduct', [SellerDashboardController, 'createProduct'])
-    // router.get('/viewWishlist', [SellerDashboardController, 'showAllWishlist'])
+    router.get('/wishlistView', [SellerDashboardController, 'viewWishlistAnalytics'])
   })
   .prefix('/seller')
