@@ -1,19 +1,24 @@
 @layout.app({title: 'Seller Dashboard'})
-  @slot('main')
-    <main style="padding: 40px;">
-      <h1>Product List</h1>
-      <a href="/seller/products/add">Add New Product</a>
-      <table id="product-list-table" style="width: 100%; margin-top: 20px;">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </main>
+  @slot('meta')
+    @vite(['resources/css/seller.css'])
+    @vite(['resources/js/seller.js'])
   @endslot
+  @slot('main')
+    <main class="seller-main">
+            <h1>Product List</h1>
+            <a href="/addProduct" class="seller-cta">Add New Product</a>
+            <table id="product-list-table" class="seller-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{-- JavaScript will fill this --}}
+                </tbody>
+            </table>
+        </main>
+@endslot
 @end

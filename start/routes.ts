@@ -7,6 +7,7 @@
 |
 */
 import router from '@adonisjs/core/services/router'
+// user
 const ProductsController = () => import('#controllers/products_controller')
 const SearchController = () => import('#controllers/search_controller')
 const WishlistsController = () => import('#controllers/wishlists_controller')
@@ -21,3 +22,14 @@ router.get('/product', [ProductsController, 'index'])
 router.get('/wishlistUser', [WishlistsController, 'show'])
 router.get('/search', [SearchController, 'show'])
 router.get('/checkout', [CheckoutsController, 'show'])
+
+// seller
+const SellerDashboardController = () => import('#controllers/seller_dashboard_controller')
+
+router
+  .group(() => {
+    router.get('/dashboard', [SellerDashboardController, 'dashboard'])
+    router.get('/addProduct', [SellerDashboardController, 'showAddProduct'])
+    // router.get('/viewWishlist', [SellerDashboardController, 'showAllWishlist'])
+  })
+  .prefix('/seller')
